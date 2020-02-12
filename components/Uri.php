@@ -6,7 +6,7 @@ class Uri
     public static function setPageUri($i)       //мб перенести в другой класс
     {
         $params = Uri::getParams();
-        $params['page'] = $i;                 //переделать мб замутить выделение выбранной страницы
+        $params['page'] = $i;
         $uri = http_build_query($params);
         echo "?$uri";
     }
@@ -14,7 +14,7 @@ class Uri
     public static function setColUri($col)
     {
         $params = Uri::getParams();
-        $params['order'] = $col;                   //as как то придумать
+        $params['order'] = $col;
         if(isset($params['as']))
         {
             $params['as'] = ($params['as'] == 'desc') ? 'asc' : 'desc';
