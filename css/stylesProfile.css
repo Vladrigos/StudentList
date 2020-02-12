@@ -1,0 +1,91 @@
+*,
+*:before,
+*:after{
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+}
+
+body{
+ font-family: Arial, sans-serif;
+}
+
+a{
+	color: #fff;
+}
+
+.header{
+	width: 100%;
+	background: #0d021f;
+	color: #fff;
+}
+
+.logo{
+	font-size: 18px;
+}
+
+.message{
+	margin: 10px;
+	padding: 10px;
+}
+
+.border-red{
+	border: 2px solid red;
+}
+
+.border-green{
+	border: 2px solid green;
+}
+
+.container{
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.header_inner{
+	padding: 0px 65px;
+	height: 100px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.form{
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	margin: 10px auto 50px;
+	flex-direction: column;
+	width: 300px;
+}
+
+.form-input{
+	font-size: 18px;
+	height: 40px;
+	margin-bottom: 20px;
+}
+
+.gender{
+	margin-top: 10px;
+}
+
+.butt{
+	display: block;
+	border: 3px solid #218290;
+	color: #fff;
+	font-size: 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 50px;
+	width: 200px;
+}
+
+.submitButton{
+	font-size: 15px;
+	height: 30px;
+	width: 175px;
+	margin-top: 10px;
+}
