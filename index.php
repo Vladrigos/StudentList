@@ -8,7 +8,7 @@ require_once(ROOT.'/components/Router.php');
 
 require_once(ROOT.'/components/autoload.php');
 
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
 
 $router = new Router();
 $router->run();
