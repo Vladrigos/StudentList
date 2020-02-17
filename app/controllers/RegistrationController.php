@@ -54,7 +54,7 @@ Class RegistrationController
                 {
                     if(StudentGateway::addStudent($student))
                     {
-                        setCookie('student', $cookie, time() + 7200);
+                        setCookie('student', $cookie, time() + 5256000);
                         $this->successMessage = 'Регистрация прошла успешно';
                     }
                 }
