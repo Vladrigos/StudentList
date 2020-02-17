@@ -48,14 +48,14 @@ Class StudentGateway
     public static function addStudent(Student $student)
     {
         $db = Db::getConnection();
-        $stmt = $db->prepare('INSERT INTO student VALUES("",:name, :surname, :group, :points, :email, :local, :gender, :cookie)');
+        $stmt = $db->prepare('INSERT INTO student VALUES(DEFAULT,:name, :surname, :group, :points, :gender, :local, :email, :cookie)');
         $stmt->bindValue(':name', $student->getName());
         $stmt->bindValue(':surname', $student->getSurname());
         $stmt->bindValue(':group', $student->getGroup());
         $stmt->bindValue(':points', $student->getPoints());
-        $stmt->bindValue(':email', $student->getEmail());
-        $stmt->bindValue(':local', $student->getLocal());
         $stmt->bindValue(':gender', $student->getGender());
+        $stmt->bindValue(':local', $student->getLocal());
+        $stmt->bindValue(':email', $student->getEmail());
         $stmt->bindValue(':cookie', $student->getCookie());
         
         $stmt->execute();
