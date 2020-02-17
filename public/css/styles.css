@@ -1,0 +1,106 @@
+*,
+*:before,
+*:after{
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+}
+
+/*
+Container
+========================*/
+body{
+ font-family: Arial, sans-serif;
+
+}
+
+th a{
+	color: #000;
+}
+
+
+.header{
+	width: 100%;
+	background: #0d021f;
+	color: #fff;
+}
+
+.container{
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.header_inner{
+	height: 100px;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo{
+	font-size: 18px;
+}
+
+.reg-button{
+	font-size: 27px;
+	background: #999;
+	width: 200px;
+}
+
+.butt{
+	display: block;
+	border: 3px solid #218290;
+	color: #fff;
+	font-size: 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 50px;
+	width: 200px;
+}
+
+table{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	padding: 10px 0;
+	border-left: 2px solid #0d021f;
+	border-right: 2px solid #0d021f; /* Рамка вокруг таблицы */ 
+	border-spacing: 10px; /* Расстояние между ячейками */ 
+}
+
+.search-input{
+	height: 30px;
+}
+
+.submite_button{
+	height: 30px;
+	width: 90px;
+	color : #000;
+}
+
+.list_pages{
+	margin: 10px auto 100px;
+}
+
+.page{
+	font-size: 18px;
+	text-align: center;
+	padding-top: 4px;
+	display: inline-block;
+	height: 25px;
+	width: 25px;
+	
+	background: #ddd;
+	color: #000;
+}
+
+.active{
+	background: #3AFF00;
+}
+
+.sort{
+	background: rgba(164, 247, 92, .4);
+}

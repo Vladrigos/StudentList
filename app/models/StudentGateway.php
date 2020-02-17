@@ -29,7 +29,7 @@ Class StudentGateway
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public static function getSearchStudents($search)
+    public static function getSearchStudents($search)       //как то переделать что бы каунт получать или ещё функцию ебануть, вроде пашет но гавно
     {
         $db = Db::getConnection();
         $stmt = $db->prepare('SELECT * '
@@ -117,6 +117,13 @@ Class StudentGateway
         . " studentGroup = '{$student->getGroup()}', studentPoints = {$student->getPoints()},"
         . " studentGender = '{$student->getGender()}', studentLocal = '{$student->getLocal()}',"
         . " studentEmail = '{$student->getEmail()}' WHERE studentCookie = '{$student->getCookie()}'");
+        
+         /*$stmt = $db->prepare("UPDATE student SET studentName = ':studentName', "
+         . "studentSurname = ':studentSurname', studentGroup = ':studentGroup', "
+         . "studentPoints = ':studentPoints', studentLocal = ':studentLocal', "
+         . "studentGender = ':studentGender', studentEmail = ':studentEmail' "
+         . "WHERE studentCookie = ':studentCookie'");
+        //связали параметры
 
         /*$stmt->execute(array(':studentName' => $student->getName(), ':studentSurname' => $student->getSurname(),
             ':studentGroup' => $student->getGroup(), ':studentPoints' => $student->getPoints(), ':studentLocal' => $student->getLocal(), 

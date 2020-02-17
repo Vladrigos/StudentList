@@ -30,7 +30,7 @@ Class MainController
             $this->totalpages = ceil(StudentGateway::getCountStudents() / $this->limit);
         }
         
-        include_once("views/main.phtml");
+        include_once(ROOT . "/app/views/main.phtml");
         
         return 1;
     }

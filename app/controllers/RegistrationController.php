@@ -68,7 +68,7 @@ Class RegistrationController
         
         $currentStudent = StudentGateway::getStudentByCookie($cookie);
         
-        include_once("views/registration.phtml");
+        include_once(ROOT . "/app/views/registration.phtml");
         
         return 1;
 
