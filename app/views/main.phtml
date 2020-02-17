@@ -43,10 +43,10 @@
 			
 			<?php foreach ($students as $student):?>
 				 <tr>
-				 	<td><?=$student['studentName'];?></td>
-				 	<td><?=$student['studentSurname'];?></td>
-				 	<td><?=$student['studentGroup'];?></td>
-				 	<td><?=$student['studentPoints'];?></td>
+                                    <td><?=htmlspecialchars($student['studentName']);?></td>
+                                    <td><?=htmlspecialchars($student['studentSurname']);?></td>
+				    <td><?=htmlspecialchars($student['studentGroup']);?></td>
+				    <td><?=htmlspecialchars($student['studentPoints']);?></td>
 				 </tr>
 			 <?php endforeach;?>
 		</table>
