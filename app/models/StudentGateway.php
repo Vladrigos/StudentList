@@ -39,8 +39,7 @@ Class StudentGateway
         }
         $query = $query . "LIMIT $limit OFFSET $offset";
         $stmt = $db->prepare($query);
-        //связали параметры
-        $stmt->bindParam(':order', $order);    
+        //связали параметры 
         $stmt->bindValue(':search', $search);
         //выполнили запрос
         $stmt->execute();
