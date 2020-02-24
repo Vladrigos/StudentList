@@ -7,10 +7,18 @@ Class StudentGateway
         
     }
     
-    public static function getStudents(int $limit, int $offset, $order = NULL, $as = NULL)
+    public static function getStudents(int $limit, int $offset, string $order = NULL, string $as = NULL, string $search = NULL)
     {
         $db = Db::getConnection();
         $query = "SELECT studentName,studentSurname,studentGroup,studentPoints FROM student ";
+        if($search)
+        {
+            $search = "%$search%";
+            $query = $query ."WHERE studentName LIKE :search OR "
+                            ."studentSurname LIKE :search OR "
+                            ."studentGroup LIKE :search OR "
+                            ."studentPoints LIKE :search ";
+        }
         if($order)
         {
             $query = $query . "ORDER BY $order ";
@@ -24,27 +32,15 @@ Class StudentGateway
             }
         }
         $query = $query . "LIMIT $limit OFFSET $offset";
-        $stmt = $db->query($query);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    public static function getSearchStudents($search)       //как то переделать что бы каунт получать или ещё функцию ебануть, вроде пашет но гавно
-    {
-        $db = Db::getConnection();
-        $stmt = $db->prepare('SELECT * '
-                                            .'FROM student '
-                                            ."WHERE studentName LIKE :search OR "
-                                            ."studentSurname LIKE :search OR "
-                                            ."studentGroup LIKE :search OR "
-                                            ."studentPoints LIKE :search");
+        $stmt = $db->prepare($query);
         //связали параметры
         $stmt->bindValue(':search', $search);
+        $stmt->bindValue(':order', $order);
         //выполнили запрос
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public static function addStudent(Student $student)
     {
         $db = Db::getConnection();
@@ -80,7 +76,7 @@ Class StudentGateway
         }
         else
         {
-            return 0;
+            return NULL;
         }
     }
     
@@ -94,9 +90,10 @@ Class StudentGateway
     
     public static function getCountSearchStudents($search)
     {
-        $db = Db::getConnection();
-        $stmt = $db->prepare('SELECT COUNT(*) '
-                                            .'FROM student '
+        $search = "%$search%";
+        $db = Db::getConnection(); 
+        $stmt = $db->prepare("SELECT COUNT(*) "
+                                            ."FROM student "
                                             ."WHERE studentName LIKE :search OR "
                                             ."studentSurname LIKE :search OR "
                                             ."studentGroup LIKE :search OR "

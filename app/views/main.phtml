@@ -11,7 +11,8 @@
 			<div class="header_inner">
 				<div class="logo">Список Абитуриентов</div>
 				<form class ="search" method ="get">
-					<input class="search-input" type="text" name="search" placeholder="Search..." maxlength="20">
+					<input class="search-input" type="text" name="search" placeholder="Search..." maxlength="20" 
+                                               value = "<?php if(isset($_GET['search'])) echo htmlspecialchars ($_GET['search']);?>">
 					<input class="submite_button" type="submit" value="Поиск">
 				</form>
 				<div class="dws">

@@ -11,22 +11,17 @@ Class MainController
     {
         $isRegister = isset($_COOKIE['student']);
         //если что то ищем
-        if(isset($_GET['search']) && $_GET['search'] != '')
+        $search = $_GET['search'] ?? NULL;
+        $order = $_GET['order'] ?? NULL;
+        $as = $_GET['as'] ?? NULL;
+
+        $students = StudentGateway::getStudents($this->limit, $this->getOffsetStudents(), $order, $as, $search);
+        if($search)
         {
-            $students = StudentGateway::getSearchStudents($_GET['search']); 
             $this->totalpages = ceil(StudentGateway::getCountSearchStudents($_GET['search']) / $this->limit);
         }
         else
         {
-            //если нужно с сортировкой
-            if(isset($_GET['order']))
-            {
-                $students = StudentGateway::getStudents($this->limit, $this->getOffsetStudents(), $_GET['order'], $_GET['as']);
-            }
-            else
-            {
-                $students = StudentGateway::getStudents($this->limit, $this->getOffsetStudents());
-            }
             $this->totalpages = ceil(StudentGateway::getCountStudents() / $this->limit);
         }
         
