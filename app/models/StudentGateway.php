@@ -64,7 +64,7 @@ Class StudentGateway
         return $stmt;
     }
  
-    public static function getStudentByCookie($cookie) : Student
+    public static function getStudentByCookie($cookie)
     {
         $db = Db::getConnection();
         $stmt = $db->prepare('SELECT * FROM student WHERE studentCookie LIKE :cookie');
@@ -115,23 +115,22 @@ Class StudentGateway
     {
         $db = Db::getConnection();
         
-        $stmt = $db->query("UPDATE student SET studentName = '{$student->getName()}', studentSurname = '{$student->getSurname()}',"
+        /*$stmt = $db->query("UPDATE student SET studentName = '{$student->getName()}', studentSurname = '{$student->getSurname()}',"
         . " studentGroup = '{$student->getGroup()}', studentPoints = {$student->getPoints()},"
         . " studentGender = '{$student->getGender()}', studentLocal = '{$student->getLocal()}',"
         . " studentEmail = '{$student->getEmail()}' WHERE studentCookie = '{$student->getCookie()}'");
-        
-         /*$stmt = $db->prepare("UPDATE student SET studentName = ':studentName', "
-         . "studentSurname = ':studentSurname', studentGroup = ':studentGroup', "
-         . "studentPoints = ':studentPoints', studentLocal = ':studentLocal', "
-         . "studentGender = ':studentGender', studentEmail = ':studentEmail' "
-         . "WHERE studentCookie = ':studentCookie'");
+        */
+         $stmt = $db->prepare("UPDATE student SET studentName = :studentName, "
+         . "studentSurname = :studentSurname, studentGroup = :studentGroup, "
+         . "studentPoints = :studentPoints, studentLocal = :studentLocal, "
+         . "studentGender = :studentGender, studentEmail = :studentEmail "
+         . "WHERE studentCookie = :studentCookie");
         //связали параметры
 
-        /*$stmt->execute(array(':studentName' => $student->getName(), ':studentSurname' => $student->getSurname(),
+        $stmt->execute(array(':studentName' => $student->getName(), ':studentSurname' => $student->getSurname(),
             ':studentGroup' => $student->getGroup(), ':studentPoints' => $student->getPoints(), ':studentLocal' => $student->getLocal(), 
             ':studentGender' => $student->getGender(), ':studentEmail' => $student->getEmail(), ':studentCookie' => $student->getCookie()));
-         * так почему то не работает
-        */
+        
         return $stmt;
     }
 }
