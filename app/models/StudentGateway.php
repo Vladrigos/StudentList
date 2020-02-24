@@ -2,12 +2,14 @@
 
 Class StudentGateway
 {
+    //разрешенные значения для order
+    private static $columns = ["studentName", "studentSurname", "studentGroup", "studentPoints"];
     public function __construct()
     {
         
     }
     
-    public static function getStudents(int $limit, int $offset, string $order = NULL, string $as = NULL, string $search = NULL)
+    public static function getStudents(int $limit, int $offset, string $order = NULL, string $as = NULL, string $search = NULL) : array
     {
         $db = Db::getConnection();
         $query = "SELECT studentName,studentSurname,studentGroup,studentPoints FROM student ";
@@ -21,7 +23,11 @@ Class StudentGateway
         }
         if($order)
         {
-            $query = $query . "ORDER BY $order ";
+            //проверяем по списку разрешенных значений
+            if(in_array($order, self::$columns))
+            {
+                $query = $query . "ORDER BY $order ";
+            }
             if($as == "desc")
             {
                 $query = $query . 'DESC ';
@@ -34,14 +40,14 @@ Class StudentGateway
         $query = $query . "LIMIT $limit OFFSET $offset";
         $stmt = $db->prepare($query);
         //связали параметры
+        $stmt->bindParam(':order', $order);    
         $stmt->bindValue(':search', $search);
-        $stmt->bindValue(':order', $order);
         //выполнили запрос
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function addStudent(Student $student)
+    public static function addStudent(Student $student) : PDOStatement
     {
         $db = Db::getConnection();
         $stmt = $db->prepare('INSERT INTO student VALUES(DEFAULT,:name, :surname, :group, :points, :gender, :local, :email, :cookie)');
@@ -59,7 +65,7 @@ Class StudentGateway
         return $stmt;
     }
  
-    public static function getStudentByCookie($cookie)
+    public static function getStudentByCookie($cookie) : Student
     {
         $db = Db::getConnection();
         $stmt = $db->prepare('SELECT * FROM student WHERE studentCookie LIKE :cookie');
@@ -80,7 +86,7 @@ Class StudentGateway
         }
     }
     
-    public static function getCountStudents()
+    public static function getCountStudents() : int
     {
         $db = Db::getConnection();
         $stmt = $db->query("SELECT COUNT(*) FROM student");
@@ -88,7 +94,7 @@ Class StudentGateway
         return $countStudents;
     }
     
-    public static function getCountSearchStudents($search)
+    public static function getCountSearchStudents($search) : int
     {
         $search = "%$search%";
         $db = Db::getConnection(); 
@@ -106,7 +112,7 @@ Class StudentGateway
         return $countStudents;
     }
     
-    public static function updateStudentByCookie(Student $student)
+    public static function updateStudentByCookie(Student $student) : PDOStatement
     {
         $db = Db::getConnection();
         
