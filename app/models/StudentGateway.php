@@ -114,12 +114,7 @@ Class StudentGateway
     public static function updateStudentByCookie(Student $student) : PDOStatement
     {
         $db = Db::getConnection();
-        
-        /*$stmt = $db->query("UPDATE student SET studentName = '{$student->getName()}', studentSurname = '{$student->getSurname()}',"
-        . " studentGroup = '{$student->getGroup()}', studentPoints = {$student->getPoints()},"
-        . " studentGender = '{$student->getGender()}', studentLocal = '{$student->getLocal()}',"
-        . " studentEmail = '{$student->getEmail()}' WHERE studentCookie = '{$student->getCookie()}'");
-        */
+
          $stmt = $db->prepare("UPDATE student SET studentName = :studentName, "
          . "studentSurname = :studentSurname, studentGroup = :studentGroup, "
          . "studentPoints = :studentPoints, studentLocal = :studentLocal, "
