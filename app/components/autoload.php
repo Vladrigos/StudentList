@@ -1,41 +1,9 @@
 <?php
 
-spl_autoload_register(function ($class)
-{
-   $path = ROOT . "/app/" . $class . '.php'; 
-   //echo $path;
-   if(file_exists($path))
-   {
-       require_once $path;
-   }
-});
-
-spl_autoload_register(function ($class)
-{
-   $path = ROOT . "/app/controllers/" . $class . '.php'; 
-
-   if(file_exists($path))
-   {
-       require_once $path;
-   }
-});
-
-spl_autoload_register(function ($class)
-{
-   $path = ROOT . "/app/models/" . $class . '.php'; 
-
-   if(file_exists($path))
-   {
-       require_once $path;
-   }
-});
-
-spl_autoload_register(function ($class)
-{
-   $path = ROOT . "/app/components/" . $class . '.php'; 
-   
-   if(file_exists($path))
-   {
-       require_once $path;
-   }
+set_include_path( get_include_path()
+. PATH_SEPARATOR . ROOT . '/app/controllers/'
+. PATH_SEPARATOR . ROOT . '/app/models/'
+. PATH_SEPARATOR . ROOT . '/app/components/');
+spl_autoload_register( function( $class ) {
+    include $class . '.php';
 });

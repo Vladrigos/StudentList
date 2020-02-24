@@ -24,10 +24,8 @@ class Router
         //Получить строку запроса
         $uri = $this->getURI();
         //Отделить GET-запрос от пути
-        $uri = parse_url($uri);
-        
-        $uri = explode("?", $_SERVER["REQUEST_URI"])[0];   
-       
+        $uri = parse_url($uri, PHP_URL_PATH);
+
         $result = 0;
         //Проверить наличие такого запроса в routes.php
         foreach ($this->routes as $uriPattern => $path) 
