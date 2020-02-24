@@ -16,6 +16,7 @@ Class MainController
         $as = $_GET['as'] ?? NULL;
 
         $students = StudentGateway::getStudents($this->limit, $this->getOffsetStudents(), $order, $as, $search);
+        
         if($search)
         {
             $this->totalpages = ceil(StudentGateway::getCountSearchStudents($_GET['search']) / $this->limit);
@@ -27,14 +28,14 @@ Class MainController
         
         include_once(ROOT . "/app/views/main.phtml");
         
-        return 1;
+        return TRUE;
     }
       
-    public function getOffsetStudents()
+    private function getOffsetStudents() : int
     {
         if (isset($_GET['page']) && $_GET['page'] > 0) 
         {
-            return $_GET['page'] * $this->limit - $this->limit;
+            return (intval($_GET['page']) * $this->limit - $this->limit);
         }
         else
         {
