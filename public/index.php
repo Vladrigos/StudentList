@@ -4,9 +4,9 @@ error_reporting(E_ALL);
 
 define ('ROOT', dirname(__FILE__ , 2));
 
-require_once(ROOT.'/app/components/Router.php');
-
 require_once(ROOT.'/app/components/autoload.php');
+
+require_once(ROOT.'/app/components/Router.php');
 
 //require_once 'vendor/autoload.php';
 
