@@ -2,6 +2,11 @@
 
 class Student
 {
+    const GENDER_MALE = "m";
+    const GENDER_FEMALE = "f";
+    const LOCAL = "l";
+    const NOT_LOCAL = "n";
+    
     private $gender;
     private $name;
     private $surname;

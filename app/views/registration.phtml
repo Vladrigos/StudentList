@@ -45,20 +45,20 @@
 		                : '' ?>" required>
 	            <p>Проживание</p>
 	            <label>
-					<input name='local' class='form-radio' type="radio" checked value = '<?= VALIDATOR::LOCAL ?>'>Местное
+					<input name='local' class='form-radio' type="radio" checked value = '<?= Student::LOCAL ?>'>Местное
 				</label>
 				<label>
-					<input name='local' class='form-radio' type='radio' value='<?=VALIDATOR::NOT_LOCAL?>'
-					<?php if($currentStudent && $currentStudent->getLocal() == VALIDATOR::NOT_LOCAL) { echo 'checked'; } ?> >Иногородний
+					<input name='local' class='form-radio' type='radio' value='<?=Student::NOT_LOCAL?>'
+					<?php if($currentStudent && $currentStudent->getLocal() == Student::NOT_LOCAL) { echo 'checked'; } ?> >Иногородний
 	            </label>
 				<p class="gender">Пол</p>
 	            <label>
 		        	<input name='gender' class='form-radio' type="radio" checked 
-		        	value = '<?= VALIDATOR::GENDER_MALE ?>'>Мужской
+		        	value = '<?= Student::GENDER_MALE ?>'>Мужской
 				</label>
 				<label>
-					<input name='gender' class='form-radio' type='radio' value='<?= VALIDATOR::GENDER_FEMALE ?>' 
-					<?php if($currentStudent && $currentStudent->getGender() == VALIDATOR::GENDER_FEMALE) { echo 'checked'; } ?>>Женский
+					<input name='gender' class='form-radio' type='radio' value='<?= Student::GENDER_FEMALE ?>' 
+					<?php if($currentStudent && $currentStudent->getGender() == Student::GENDER_FEMALE) { echo 'checked'; } ?>>Женский
 	            </label>
 	            <input type="submit" name="submitInput" class="submitButton"
 	                    value="<?= $currentStudent ? 'Редактировать' : 'Зарегистрироваться' ?>">

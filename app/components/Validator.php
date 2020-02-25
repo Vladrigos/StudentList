@@ -2,11 +2,6 @@
 
 Class Validator
 {
-    const GENDER_MALE = "m";
-    const GENDER_FEMALE = "f";
-    const LOCAL = "l";
-    const NOT_LOCAL = "n";
-    
     const NAME_PATTERN = "!^[a-zA-Z]{2,}$|^[а-яёА-ЯЁ]{2,}$!u";
     const SURNAME_PATTERN = "!^[a-zA-Z]{2,}$|^[а-яёА-ЯЁ]{2,}$!u";
     const GROUP_PATTERN = "!^[a-zA-Z0-9]{2,5}|$|^[а-яёА-ЯЁ0-9]{2,5}|$!u";
@@ -51,15 +46,14 @@ Class Validator
     
     private static function checkName($name)
     {
+        if(mb_strlen($name) > 25 || mb_strlen($name) < 2)
+        {
+            return "Ошибка, Имя не может содержать больше 25 символов или меньше 2!";
+        }
         if($name == '' || !preg_match(Validator::NAME_PATTERN, $name))
         {
             return "Ошибка, поле содержит недопустимые символы!";
         }
-        if(strlen($name) > 25 || strlen($name) < 2)
-        {
-            return "Ошибка, Имя не может содержать больше 25 символов или меньше 2!";
-        }
-        
     }
     
     private static function checkSurname($surname)
@@ -70,7 +64,7 @@ Class Validator
             return "Ошибка, поле содержит недопустимые символы!";
         }
 
-        if(strlen($surname) > 25 || strlen($surname) < 2)
+        if(mb_strlen($surname) > 25 || mb_strlen($surname) < 2)
         {
             return "Ошибка, фамилия не может содержать больше 25 символов или меньше 2!";
         }
@@ -78,7 +72,7 @@ Class Validator
     
     private static function checkGroup($group)
     {
-        if(strlen($group) > 5 || strlen($group) < 2)
+        if(mb_strlen($group) > 5 || mb_strlen($group) < 2)
         {
             return "Ошибка, группа не может содержать больше 5 символов или меньше 2!";
         }
@@ -102,7 +96,7 @@ Class Validator
     
     private static function checkEmail($email)
     {
-        if(strlen($email) > 40 || strlen($email) < 5)
+        if(mb_strlen($email) > 40 || mb_strlen($email) < 5)
         {
             return "Ошибка, почта не может содержать больше 40 символов или меньше 5!";
         }
